@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Projetos — João Filipe</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">João Filipe</a>
+      <button class="nav-toggle" id="navToggle3" aria-label="Abrir menu">☰</button>
+      <nav class="nav" id="mainNav3" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="projetos.html">Projetos</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" id="themeToggle3" aria-label="Alternar tema">🌙</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <header class="page-header">
+      <h1>Projetos</h1>
+      <p>Principais trabalhos e exercícios realizados.</p>
+    </header>
+
+    <section class="projects-grid">
+      <article class="card">
+        <img src="FotoParaADMproject.jpeg" alt="Projeto ADM Manager (substituir imagem)">
+        <h3>ADM Manager</h3>
+        <p>Sistema full stack em desenvolvimento para gestão administrativa (em progresso).</p>
+        <div class="card-actions">
+          <button class="btn" data-project="adm">Ver detalhes</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="fotoParaJS.jpeg" alt="Exercícios de JavaScript (substituir imagem)">
+        <h3>Exercícios JavaScript</h3>
+        <p>Conjunto de scripts e pequenos projetos que demonstram DOM, lógica e manipulação de eventos.</p>
+        <div class="card-actions">
+          <button class="btn" data-project="js-exercises">Ver detalhes</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="fotoParaDB.jpeg" alt="Exercícios SQL">
+        <h3>Exercícios SQL</h3>
+        <p>Consultas e modelagem de banco de dados realizadas em laboratório.</p>
+        <div class="card-actions">
+          <button class="btn" data-project="sql-exercises">Ver detalhes</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <div id="projectModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modalClose">×</button>
+      <h3 id="modalTitle">Detalhes do projeto</h3>
+      <p id="modalBody">Selecione um projeto para ver detalhes.</p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 João Filipe</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
