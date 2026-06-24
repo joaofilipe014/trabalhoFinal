@@ -7,27 +7,33 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="progress-bar" id="progressBar"></div>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">João Filipe</a>
-      <button class="nav-toggle" id="navToggle4" aria-label="Abrir menu">☰</button>
       <nav class="nav" id="mainNav4" aria-label="Menu principal">
         <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="sobre.html">Sobre</a></li>
           <li><a href="projetos.html">Projetos</a></li>
-          <li><a href="contato.html">Contato</a></li>
+          <li><a href="contato.html" aria-current="page">Contato</a></li>
         </ul>
       </nav>
+      <button class="nav-toggle" id="navToggle4" aria-label="Abrir menu">☰</button>
       <button class="theme-toggle" id="themeToggle4" aria-label="Alternar tema">🌙</button>
     </div>
   </header>
 
   <main class="container">
-    <header class="page-header">
-      <h1>Contato</h1>
-      <p>Fique à vontade para enviar uma mensagem.</p>
-    </header>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <span class="hero-tag">Fale comigo</span>
+        <div class="page-header">
+          <h1>Contato</h1>
+          <p>Fique à vontade para enviar uma mensagem.</p>
+        </div>
+      </div>
+    </section>
 
     <section class="contact-form">
       <form id="contactForm">
