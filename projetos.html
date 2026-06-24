@@ -7,27 +7,33 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="progress-bar" id="progressBar"></div>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">João Filipe</a>
-      <button class="nav-toggle" id="navToggle3" aria-label="Abrir menu">☰</button>
       <nav class="nav" id="mainNav3" aria-label="Menu principal">
         <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="sobre.html">Sobre</a></li>
-          <li><a href="projetos.html">Projetos</a></li>
+          <li><a href="projetos.html" aria-current="page">Projetos</a></li>
           <li><a href="contato.html">Contato</a></li>
         </ul>
       </nav>
+      <button class="nav-toggle" id="navToggle3" aria-label="Abrir menu">☰</button>
       <button class="theme-toggle" id="themeToggle3" aria-label="Alternar tema">🌙</button>
     </div>
   </header>
 
   <main class="container">
-    <header class="page-header">
-      <h1>Projetos</h1>
-      <p>Principais trabalhos e exercícios realizados.</p>
-    </header>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <span class="hero-tag">Portfólio</span>
+        <div class="page-header">
+          <h1>Projetos</h1>
+          <p>Principais trabalhos e exercícios realizados.</p>
+        </div>
+      </div>
+    </section>
 
     <section class="projects-grid">
       <article class="card">
@@ -63,7 +69,13 @@
     <div class="modal-content" role="dialog" aria-modal="true">
       <button class="modal-close" id="modalClose">×</button>
       <h3 id="modalTitle">Detalhes do projeto</h3>
-      <p id="modalBody">Selecione um projeto para ver detalhes.</p>
+      <p id="modalSubtitle" class="modal-subtitle">Informações e progresso do projeto.</p>
+      <div id="modalBody" class="modal-body">
+      </div>
+      <div class="modal-actions">
+        <button class="btn secondary" id="modalPrev">Anterior</button>
+        <button class="btn secondary" id="modalNext">Próximo</button>
+      </div>
     </div>
   </div>
 
