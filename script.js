@@ -90,16 +90,106 @@
     }, tempo);
   }
 
-  // Modal dos projetos
-  function abrirModalProjeto(titulo, descricao) {
-    const modal = selecionar('#projectModal');
+  // Barra de progresso de rolagem
+  function atualizarBarraProgresso() {
+    const barra = selecionar('#progressBar');
+    if (!barra) return;
+    const alturaTotal = document.documentElement.scrollHeight - window.innerHeight;
+    const percentual = alturaTotal > 0 ? (window.scrollY / alturaTotal) * 100 : 0;
+    barra.style.width = `${percentual}%`;
+  }
 
-    if (!modal) return;
-    selecionar('#modalTitle').textContent = titulo;
-    selecionar('#modalBody').textContent = descricao;
+  // Botão de voltar ao topo
+  function criarBotaoTopo() {
+    const botao = document.createElement('button');
+    botao.className = 'back-to-top';
+    botao.type = 'button';
+    botao.title = 'Voltar ao topo';
+    botao.textContent = '↑';
+    botao.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    document.body.appendChild(botao);
+    return botao;
+  }
+
+  function atualizarBotaoTopo(botao) {
+    if (window.scrollY > 220) {
+      botao.classList.add('show');
+    } else {
+      botao.classList.remove('show');
+    }
+  }
+
+  // Modal dos projetos
+  const dadosProjetos = {
+    adm: {
+      title: 'ADM Manager',
+      subtitle: 'Projeto full stack em desenvolvimento.',
+      description: 'Sistema administrativo em construção para controle de membros, estoque e relatórios. O foco está em uma interface limpa e funcionalidades que facilitam a gestão de processos acadêmicos e administrativos.',
+      highlights: [
+        'Dashboard responsivo para visualização de indicadores.',
+        'Módulos de cadastro e autenticação.',
+        'Planejado com HTML, CSS, JavaScript e backend em Java.',
+        'Organização pensando em usabilidade e futuro deploy.'
+      ],
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Java', 'Spring Boot']
+    },
+    'js-exercises': {
+      title: 'Exercícios JavaScript',
+      subtitle: 'Prática de DOM, eventos e lógica.',
+      description: 'Coleção de pequenos projetos que demonstram manipulação de DOM, validação de formulários e resolução de desafios de programação. Ideal para mostrar como conceitos básicos tornam-se ferramentas reais.',
+      highlights: [
+        'Validação de formulários e feedback ao usuário.',
+        'Uso de eventos para interações dinâmicas.',
+        'Componentes simples com estrutura clara e legível.',
+        'Foco em código organizado e reutilizável.'
+      ],
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Git']
+    },
+    'sql-exercises': {
+      title: 'Exercícios SQL',
+      subtitle: 'Modelo de dados e consultas.',
+      description: 'Trabalhos de banco de dados com modelagem relacional, criação de tabelas e consultas SELECT para extrair informações relevantes. Esse projeto mostra entendimento de como dados são estruturados e consultados.',
+      highlights: [
+        'Criação de esquemas e tabelas relacionais.',
+        'Consultas SQL para filtros e agregações.',
+        'Aprendizado de boas práticas de organização de dados.',
+        'Preparação para aplicações full stack.'
+      ],
+      technologies: ['SQL', 'Banco de Dados', 'Modelagem', 'Git']
+    }
+  };
+
+  const listaProjetos = Object.keys(dadosProjetos);
+  let projetoAtual = 0;
+
+  function mostrarDetalhesProjeto(chave) {
+    const modal = selecionar('#projectModal');
+    const dados = dadosProjetos[chave];
+    if (!modal || !dados) return;
+
+    projetoAtual = listaProjetos.indexOf(chave);
+    selecionar('#modalTitle').textContent = dados.title;
+    selecionar('#modalSubtitle').textContent = dados.subtitle;
+
+    const corpo = selecionar('#modalBody');
+    corpo.innerHTML = `
+      <p>${dados.description}</p>
+      <ul class="modal-highlights">
+        ${dados.highlights.map(item => `<li>• ${item}</li>`).join('')}
+      </ul>
+      <div class="modal-techs">
+        ${dados.technologies.map(tech => `<span>${tech}</span>`).join('')}
+      </div>
+    `;
 
     modal.classList.add('show');
     modal.setAttribute('aria-hidden', 'false');
+  }
+
+  function abrirModalProjeto(chave) {
+    mostrarDetalhesProjeto(chave);
   }
 
   function fecharModalProjeto() {
@@ -109,6 +199,38 @@
 
     modal.classList.remove('show');
     modal.setAttribute('aria-hidden', 'true');
+  }
+
+  function projetarAdjacente(direcao) {
+    if (direcao === 'next') {
+      projetoAtual = Math.min(projetoAtual + 1, listaProjetos.length - 1);
+    } else {
+      projetoAtual = Math.max(projetoAtual - 1, 0);
+    }
+    mostrarDetalhesProjeto(listaProjetos[projetoAtual]);
+  }
+
+  // Carrossel de cards da página Sobre
+  let indiceCarrossel = 0;
+  function atualizarCarrossel() {
+    const faixa = selecionar('.carousel-track');
+    const cartas = selecionar('.carousel-cards');
+    if (!faixa || !cartas) return;
+
+    const largura = faixa.offsetWidth;
+    cartas.style.transform = `translateX(-${indiceCarrossel * largura}px)`;
+  }
+  function mudarCard(direcao) {
+    const cartas = selecionarTodos('.carousel-card');
+    if (!cartas.length) return;
+
+    if (direcao === 'next') {
+      indiceCarrossel = Math.min(indiceCarrossel + 1, cartas.length - 1);
+    } else {
+      indiceCarrossel = Math.max(indiceCarrossel - 1, 0);
+    }
+
+    atualizarCarrossel();
   }
   // Validação do formulário
 
@@ -139,6 +261,15 @@
       botao.addEventListener('click', alternarTema);
     });
 
+    // Botão de voltar ao topo
+    const botaoTopo = criarBotaoTopo();
+    atualizarBotaoTopo(botaoTopo);
+    atualizarBarraProgresso();
+    window.addEventListener('scroll', () => {
+      atualizarBotaoTopo(botaoTopo);
+      atualizarBarraProgresso();
+    });
+
     // Botões do menu responsivo
     selecionarTodos('.nav-toggle').forEach(botao => {
 
@@ -153,35 +284,31 @@
       });
     });
 
+    // Carrossel da página Sobre
+    selecionarTodos('.carousel-btn').forEach(botao => {
+      botao.addEventListener('click', function () {
+        mudarCard(botao.dataset.direction);
+      });
+    });
+    atualizarCarrossel();
+
     // Botões dos projetos
     selecionarTodos('.card .btn').forEach(botao => {
 
       botao.addEventListener('click', () => {
-
-        const projeto = botao.dataset.project;
-
-        if (projeto === 'adm') {
-
-          abrirModalProjeto(
-            'ADM Manager',
-            'Projeto full-stack em desenvolvimento. Tecnologias: HTML, CSS, JavaScript e backend com Java.'
-          );
-
-        } else if (projeto === 'js-exercises') {
-
-          abrirModalProjeto(
-            'Exercícios JavaScript',
-            'Conjunto de exercícios que demonstram manipulação do DOM, eventos e lógica em JavaScript.'
-          );
-        } else if (projeto === 'sql-exercises') {
-
-          abrirModalProjeto(
-            'Exercícios SQL',
-            'Consultas, modelagem e scripts SQL realizados durante os estudos de Banco de Dados.'
-          );
-        }
+        abrirModalProjeto(botao.dataset.project);
       });
     });
+
+    const botaoPrev = selecionar('#modalPrev');
+    const botaoNext = selecionar('#modalNext');
+
+    if (botaoPrev) {
+      botaoPrev.addEventListener('click', () => projetarAdjacente('prev'));
+    }
+    if (botaoNext) {
+      botaoNext.addEventListener('click', () => projetarAdjacente('next'));
+    }
 
     // Fechamento do modal
     const botaoFecharModal = selecionar('#modalClose');
