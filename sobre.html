@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="progress-bar" id="progressBar"></div>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">João Filipe</a>
@@ -24,40 +25,54 @@
   </header>
 
   <main class="container">
-    <header class="page-header">
-      <h1>Sobre Mim</h1>
-      <p>Informações acadêmicas e objetivos profissionais.</p>
-    </header>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <span class="hero-tag">Página Sobre</span>
+        <div class="page-header">
+          <h1>Sobre Mim</h1>
+          <p>Informações acadêmicas e objetivos profissionais.</p>
+          <p>Eu gosto de jogar bola, de fazer atividades físicas e de ler, sempre aprendendo coisas novas.</p>
+        </div>
+      </div>
+    </section>
 
-    <section class="about-grid">
-      <article>
-        <h2>Graduação</h2>
-        <p>Curso: Engenharia de Software — 2º ano. Disciplinas: Desenvolvimento Web, Banco de Dados, Programação Orientada a Objetos.</p>
-      </article>
-
-      <article>
-        <h2>Objetivos</h2>
-        <p>Buscar a primeira oportunidade em desenvolvimento web ou backend, aplicar boas práticas de engenharia e aprender ferramentas profissionais.</p>
-      </article>
-
-      <article>
-        <h2>Habilidades Técnicas</h2>
-        <ul>
-          <li>HTML5, CSS3, JavaScript</li>
-          <li>SQL e modelagem de dados</li>
-          <li>Controle de versão com Git/GitHub</li>
-          <li>Conhecimentos iniciais em Java e Spring Boot</li>
-        </ul>
-      </article>
-
-      <article>
-        <h2>Interesses</h2>
-        <p>Desenvolvimento web, APIs, backend, banco de dados e boas práticas de engenharia de software.</p>
-      </article>
+    <section class="about-carousel">
+      <div class="carousel-controls">
+        <button class="carousel-btn" data-direction="prev" aria-label="Anterior">←</button>
+        <div class="carousel-track">
+          <div class="carousel-cards">
+            <article class="carousel-card">
+              <h2>Graduação</h2>
+              <p>Curso: Engenharia de Software — 2º ano. Disciplinas: Desenvolvimento Web, Banco de Dados, Programação Orientada a Objetos.</p>
+            </article>
+            <article class="carousel-card">
+              <h2>Objetivos</h2>
+              <p>Buscar a primeira oportunidade em desenvolvimento web ou backend, aplicar boas práticas de engenharia e aprender ferramentas profissionais.</p>
+            </article>
+            <article class="carousel-card">
+              <h2>Habilidades Técnicas</h2>
+              <p>Domínio de linguagens e ferramentas importantes para projetos e estudo contínuo.</p>
+              <div class="tech-icons">
+                <span><img src="img/html-logo.svg" alt="HTML5">HTML5</span>
+                <span><img src="img/css-logo.svg" alt="CSS3">CSS3</span>
+                <span><img src="img/js-logo.svg" alt="JavaScript">JavaScript</span>
+                <span><img src="img/sql-logo.svg" alt="SQL">SQL</span>
+                <span><img src="img/git-logo.svg" alt="Git">Git</span>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <h2>Interesses</h2>
+              <p>Desenvolvimento web, APIs, backend, banco de dados e boas práticas de engenharia de software.</p>
+            </article>
+          </div>
+        </div>
+        <button class="carousel-btn" data-direction="next" aria-label="Próximo">→</button>
+      </div>
     </section>
 
     <section class="timeline">
       <h2>Linha do Tempo Acadêmica</h2>
+      <p>Principais marcos do meu percurso em Engenharia de Software, com foco em aprendizado contínuo e desenvolvimento prático.</p>
       <ol>
         <li><strong>2025</strong> — Ingresso no curso de Engenharia de Software.</li>
         <li><strong>2025.6</strong> — Projetos em desenvolvimento web e introdução a bancos de dados.</li>
